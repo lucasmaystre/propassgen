@@ -10,6 +10,8 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Resources;
+using System.Xml.Linq;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
@@ -22,6 +24,10 @@ namespace HelloPhone
         /// </summary>
         /// <returns>The root frame of the Phone Application.</returns>
         public PhoneApplicationFrame RootFrame { get; private set; }
+
+        public List<Char> symbols { get; private set; }
+        public Dictionary<string, int> frequencies { get; private set; }
+        public int total { get; private set; }
 
         /// <summary>
         /// Constructor for the Application object.
@@ -63,6 +69,33 @@ namespace HelloPhone
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            // Read xml source file, and parse it in a more application-friendly data structure.
+            // Declare an XElement to hold the contents of the xml file. 
+            XElement sourceXml;
+
+            // Get a stream to the XML file which contains the data and load it into the XElement. 
+            StreamResourceInfo xml = Application.GetResourceStream(
+                new Uri("/HelloPhone;component/source.xml", UriKind.Relative));
+            sourceXml = XElement.Load(xml.Stream);
+
+            frequencies = new Dictionary<string, int>();
+            symbols = new List<Char>();
+
+            XElement symbs = sourceXml.Element("symbols");
+            foreach (var symb in symbs.Elements("symbol"))
+            {
+                // It is only one char long.
+                symbols.Add(symb.Attribute("value").Value[0]);
+            }
+
+            XElement seqs = sourceXml.Element("sequences");
+            foreach (var seq in seqs.Elements("sequence"))
+            {
+                string trig = seq.Attribute("value").Value;
+                int freq = int.Parse(seq.Attribute("frequency").Value);
+                frequencies[trig] = freq;
+                total += freq;
+            }
         }
 
         // Code to execute when the application is activated (brought to foreground)
