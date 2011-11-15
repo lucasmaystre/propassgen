@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010 Express for Windows Phone
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProPassGen", "HelloPhone\ProPassGen.csproj", "{8C96666D-092C-4E6F-B724-2BB6ED251497}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProPassGen", "ProPassGen\ProPassGen.csproj", "{8C96666D-092C-4E6F-B724-2BB6ED251497}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

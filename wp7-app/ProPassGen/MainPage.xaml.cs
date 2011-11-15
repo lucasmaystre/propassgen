@@ -30,7 +30,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 
-namespace HelloPhone
+namespace ProPassGen
 {
     public partial class MainPage : PhoneApplicationPage
     {

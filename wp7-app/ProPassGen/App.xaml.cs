@@ -34,7 +34,7 @@ using System.Xml.Linq;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
-namespace HelloPhone
+namespace ProPassGen
 {
     public partial class App : Application
     {
@@ -94,7 +94,7 @@ namespace HelloPhone
 
             // Get a stream to the XML file which contains the data and load it into the XElement. 
             StreamResourceInfo xml = Application.GetResourceStream(
-                new Uri("/HelloPhone;component/source.xml", UriKind.Relative));
+                new Uri("/ProPassGen;component/source.xml", UriKind.Relative));
             sourceXml = XElement.Load(xml.Stream);
 
             frequencies = new Dictionary<string, int>();
