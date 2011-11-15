@@ -18,8 +18,12 @@ References & credits:
 -  Gasser, M., [A Random Word Generator for Pronounceable Passwords][4]
 -  [FIPS PUB 181][5]
 
+This program is released under the [GNU GPLv3][6]. You're welcome to use the
+code for your own projects.
+
 [1]: http://www.data-compression.com/theory.shtml#model
 [2]: http://www.multicians.org/thvv
 [3]: http://www.multicians.org/thvv/gpw.html
 [4]: http://www.dtic.mil/cgi-bin/GetTRDoc?AD=ADA017676&Location=U2&doc=GetTRDoc.pdf
 [5]: http://www.itl.nist.gov/fipspubs/fip181.htm
+[6]: http://www.gnu.org/copyleft/gpl.html

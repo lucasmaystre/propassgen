@@ -18,5 +18,11 @@ Files used for generation:
   <sequences>
     <sequence value="aaa" frequency="143"/>
     <sequence value="aab" frequency="38"/>
+    <sequence value="aba" frequency="192"/>
+    <sequence value="abb" frequency="54"/>
+    <sequence value="baa" frequency="2"/>
+    <sequence value="bab" frequency="94"/>
+    <sequence value="bba" frequency="253"/>
+    <sequence value="bbb" frequency="0"/>
   </sequences>
 </source>
