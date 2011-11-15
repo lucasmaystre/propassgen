@@ -34,10 +34,19 @@ namespace ProPassGen
 {
     public partial class MainPage : PhoneApplicationPage
     {
+        //bool _isNewPageInstance = false;
+        public string AppTitle {
+            get { return "Hello"; }
+         }
+
         // Constructor
         public MainPage()
         {
             InitializeComponent();
+            //_isNewPageInstance = true;
+            // Set the event handler for when the application data object changes.
+            (App.Current as App).ApplicationDataChanged +=
+                    new EventHandler(MainPage_ApplicationDataChanged);
         }
 
         public string GeneratePassword(int length)
@@ -85,6 +94,22 @@ namespace ProPassGen
                 }
             }
             return password;
+        }
+
+        private void MainPage_ApplicationDataChanged(object sender, EventArgs e)
+        {
+            Deployment.Current.Dispatcher.BeginInvoke(() =>
+                {
+                    ClickMeButton.IsEnabled = true;
+                });
+        }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            if ((App.Current as App).frequencies == null)
+            {
+                (App.Current as App).GetDataAsync();
+            }
         }
 
         private void ClickMeButton_Click(object sender, RoutedEventArgs e)

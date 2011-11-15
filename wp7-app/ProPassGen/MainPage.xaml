@@ -14,6 +14,14 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True">
 
+    <phone:PhoneApplicationPage.Resources>
+        <ControlTemplate x:Key="PhoneDisabledTextBoxTemplate" TargetType="TextBox">
+            <ContentControl x:Name="ContentElement" BorderThickness="0"
+                    HorizontalContentAlignment="Stretch" Margin="{StaticResource PhoneTextBoxInnerMargin}"
+                    Padding="{TemplateBinding Padding}" VerticalContentAlignment="Stretch"/>
+        </ControlTemplate>
+    </phone:PhoneApplicationPage.Resources>
+
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <!--Pivot Control-->
@@ -40,7 +48,7 @@
                     </Grid>
                     <Grid x:Name="ContentPanel" Grid.Row="1" Margin="0,0,0,12">  
                         <Button Name="ClickMeButton" Content="Generate"
-                                Padding="4" Margin="0,20,0,10" Click="ClickMeButton_Click" IsEnabled="True" />
+                                Padding="4" Margin="0,20,0,10" Click="ClickMeButton_Click" IsEnabled="False" />
                     </Grid>
 
                         
@@ -51,19 +59,42 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0" Margin="0,0,0,12">
-                            <TextBlock Name="Pw0TextBlock" Style="{StaticResource PhoneTextExtraLargeStyle}" 
-                                    Text=".........." TextAlignment="Center" FontWeight="SemiBold" Opacity="0.6"
-                                    FontFamily="Courier New" />
+                            <TextBlock Name="Pw0TextBlock"
+                                    Style="{StaticResource PhoneTextExtraLargeStyle}" 
+                                    Text=".........."
+                                    TextAlignment="Center"
+                                    FontWeight="SemiBold"
+                                    Opacity="0.6"
+                                    FontFamily="Courier New"
+                                    Foreground="{StaticResource PhoneAccentBrush}"/>
                         </Grid>
                         <Grid Grid.Row="1" Margin="0,0,0,12">
-                              <TextBlock Name="Pw1TextBlock" Style="{StaticResource PhoneTextExtraLargeStyle}" 
-                                HorizontalAlignment="Stretch" Text=".........."
-                                TextAlignment="Center" FontWeight="SemiBold" FontFamily="Courier New" />
+                            <TextBox Name="Pw1TextBlock"
+                                    IsReadOnly="True"
+                                    TextAlignment="Center"
+                                     FontWeight="SemiBold"
+                                     FontFamily="Courier New"
+                                     Foreground="{StaticResource PhoneAccentBrush}"
+                                     Template="{StaticResource PhoneDisabledTextBoxTemplate}"
+                                     Text=".........." FontSize="{StaticResource PhoneFontSizeExtraLarge}" />
+                            <!--<TextBlock Name="Pw1TextBlock"
+                                    Style="{StaticResource PhoneTextExtraLargeStyle}" 
+                                    Text=".........."
+                                    TextAlignment="Center"
+                                    FontWeight="SemiBold"
+                                    FontFamily="Courier New"
+                                    Foreground="{StaticResource PhoneAccentBrush}"/>-->
                         </Grid>
                         <Grid Grid.Row="2" Margin="0,0,0,30">
-                            <TextBlock Name="Pw2TextBlock" Style="{StaticResource PhoneTextExtraLargeStyle}" 
-                                HorizontalAlignment="Stretch" Text=".........."
-                                TextWrapping="Wrap" TextAlignment="Center" FontWeight="Bold" Opacity="0.6" FontFamily="Courier New" />
+                            <TextBlock Name="Pw2TextBlock"
+                                    Style="{StaticResource PhoneTextExtraLargeStyle}" 
+                                    HorizontalAlignment="Stretch"
+                                    Text=".........."
+                                    TextAlignment="Center"
+                                    FontWeight="Bold"
+                                    Opacity="0.6"
+                                    FontFamily="Courier New"
+                                    Foreground="{StaticResource PhoneAccentBrush}"/>
                         </Grid>
                     </Grid>
                     <Grid Grid.Row="3" Margin="0,12,0,12">
@@ -72,10 +103,32 @@
                 </Grid>
             </controls:PivotItem>
             <controls:PivotItem Header="about">
-                <Grid>
-                    
+                <Grid><!-- DataContext="{StaticResource AppResources}">-->
+                    <!--ContentPanel - place additional content here-->                 
+                    <ScrollViewer>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding Path=LocalizedResources.AppTitle, Source={StaticResource LocalizedStrings}}"
+                                    FontSize="{StaticResource PhoneFontSizeMediumLarge}" 
+                                    FontFamily="{StaticResource PhoneFontFamilySemiBold}"/>
+                            <TextBlock Text="{Binding Path=LocalizedResources.Copyright, Source={StaticResource LocalizedStrings}}" 
+                                    TextWrapping="Wrap" Margin="0,0,0,0"/>
+                            <TextBlock Text="{Binding Path=LocalizedResources.BasicExplanation, Source={StaticResource LocalizedStrings}}"
+                                    TextWrapping="Wrap" Margin="0,12,0,0" d:LayoutOverrides="Width" />
+                            <TextBlock Text="{Binding Path=LocalizedResources.AdvancedExplanation, Source={StaticResource LocalizedStrings}}"
+                                    TextWrapping="Wrap" Margin="0,12,0,0" d:LayoutOverrides="Width" />
+                            <TextBlock Text="{Binding Path=LocalizedResources.Credits, Source={StaticResource LocalizedStrings}}"
+                                    TextWrapping="Wrap" Margin="0,12,0,0" d:LayoutOverrides="Width" />
+                            <TextBlock Text="{Binding Path=LocalizedResources.License, Source={StaticResource LocalizedStrings}}"
+                                    TextWrapping="Wrap" Margin="0,12,0,0" d:LayoutOverrides="Width" />
+                            <HyperlinkButton Content="gpw" NavigateUri="http://www.google.com" TargetName="_blank"/>
+                            <HyperlinkButton Content="gpw" NavigateUri="http://www.google.com" TargetName="_blank"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                        
+                    <!--
                     <TextBlock Text="blabla"/>
                     <HyperlinkButton Content="gpw" NavigateUri="http://www.google.com" TargetName="_blank"/>
+                    -->
                 </Grid>
             </controls:PivotItem>
         </controls:Pivot>

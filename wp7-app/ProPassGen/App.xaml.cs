@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -44,9 +45,23 @@ namespace ProPassGen
         /// <returns>The root frame of the Phone Application.</returns>
         public PhoneApplicationFrame RootFrame { get; private set; }
 
+        // Related to application state.
         public List<Char> symbols { get; private set; }
         public Dictionary<string, int> frequencies { get; private set; }
         public int total { get; private set; }
+
+        public event EventHandler ApplicationDataChanged;
+
+        // Method to raise the ApplicationDataChanged event.
+        protected void OnApplicationDataChanged(EventArgs e)
+        {
+            EventHandler handler = ApplicationDataChanged;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
 
         /// <summary>
         /// Constructor for the Application object.
@@ -84,9 +99,7 @@ namespace ProPassGen
 
         }
 
-        // Code to execute when the application is launching (eg, from Start)
-        // This code will not execute when the application is reactivated
-        private void Application_Launching(object sender, LaunchingEventArgs e)
+        private void GetData()
         {
             // Read xml source file, and parse it in a more application-friendly data structure.
             // Declare an XElement to hold the contents of the xml file. 
@@ -115,6 +128,21 @@ namespace ProPassGen
                 frequencies[trig] = freq;
                 total += freq;
             }
+            // Notify that the data is ready to be used.
+            OnApplicationDataChanged(EventArgs.Empty);
+        }
+
+        public void GetDataAsync()
+        {
+            // Call the GetData method on a new thread.
+            Thread t = new Thread(new ThreadStart(GetData));
+            t.Start();
+        }
+
+        // Code to execute when the application is launching (eg, from Start)
+        // This code will not execute when the application is reactivated
+        private void Application_Launching(object sender, LaunchingEventArgs e)
+        {
         }
 
         // Code to execute when the application is activated (brought to foreground)
