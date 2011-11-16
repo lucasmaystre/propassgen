@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AdvancedExplanation" xml:space="preserve">
-    <value>How does it work behind the scenes? The password generator models the English language as a second-order Markov source. The probability distribution is generated from statistics on a set of books written in English.</value>
+    <value>How does it work behind the scenes? The password generator models the English language as a second-order Markov source. The probability distribution is generated from statistics on a set of English books.</value>
   </data>
   <data name="AppTitle" xml:space="preserve">
     <value>ProPassGen 1.0</value>
   </data>
   <data name="BasicExplanation" xml:space="preserve">
-    <value>This program generates passwords that are designed to be somehwat similar to English words. They are of relatively low entropy, meaning that they are not very strong and shouldn't be used in critical places. If you are unsure about whether they fit your particular use, ask a computer-savvy friend.</value>
+    <value>This program generates passwords that are designed to be somehwat similar to English words. They are of relatively low entropy, meaning that they are not very strong and shouldn't be used in critical places.</value>
   </data>
   <data name="Copyright" xml:space="preserve">
     <value>Copyright © 2011 Lucas Maystre</value>
@@ -137,5 +137,8 @@
   </data>
   <data name="License" xml:space="preserve">
     <value>This program is licensed under GNU General Public License v3.0. It comes with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to redistribute it under certain conditions.</value>
+  </data>
+  <data name="WebSite" xml:space="preserve">
+    <value>For more information about the program and to obtain the sources, visit:</value>
   </data>
 </root>

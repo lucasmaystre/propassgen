@@ -34,16 +34,12 @@ namespace ProPassGen
 {
     public partial class MainPage : PhoneApplicationPage
     {
-        //bool _isNewPageInstance = false;
-        public string AppTitle {
-            get { return "Hello"; }
-         }
+        private Random rand = new Random();
 
         // Constructor
         public MainPage()
         {
             InitializeComponent();
-            //_isNewPageInstance = true;
             // Set the event handler for when the application data object changes.
             (App.Current as App).ApplicationDataChanged +=
                     new EventHandler(MainPage_ApplicationDataChanged);
@@ -58,7 +54,6 @@ namespace ProPassGen
             var total = (App.Current as App).total;
             var symbs = (App.Current as App).symbols;
 
-            Random rand = new Random();
             int counter = 0;
             int pointer = rand.Next(total) + 1;
             foreach (var freq in freqs)
@@ -78,12 +73,16 @@ namespace ProPassGen
 
                 int subtot = 0;
                 foreach (var symb in symbs)
-                {
                     subtot += freqs["" + x + y + symb];
+                
+                if (subtot == 0) {
+                    // Select the next character uniformly at random.
+                    password += symbs[rand.Next(symbs.Count)];
+                    continue;
                 }
 
                 counter = 0;
-                pointer = rand.Next(subtot) + 1;
+                pointer = rand.Next((int)subtot) + 1;
                 foreach (var symb in symbs)
                 {
                     counter += freqs["" + x + y + symb];
@@ -95,6 +94,8 @@ namespace ProPassGen
             }
             return password;
         }
+
+        
 
         private void MainPage_ApplicationDataChanged(object sender, EventArgs e)
         {
@@ -114,6 +115,8 @@ namespace ProPassGen
 
         private void ClickMeButton_Click(object sender, RoutedEventArgs e)
         {
+            if (EntropyTxt.Text == "")
+                EntropyTxt.Text = "Password entropy: " + (App.Current as App).entropy + " bits.";
             Pw0TextBlock.Text = this.GeneratePassword(10);
             Pw1TextBlock.Text = this.GeneratePassword(10);
             Pw2TextBlock.Text = this.GeneratePassword(10);

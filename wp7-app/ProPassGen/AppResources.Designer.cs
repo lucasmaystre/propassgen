@@ -61,7 +61,7 @@ namespace ProPassGen {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to How does it work behind the scenes? The password generator models the English language as a second-order Markov source. The probability distribution is generated from statistics on a set of books written in English..
+        ///   Looks up a localized string similar to How does it work behind the scenes? The password generator models the English language as a second-order Markov source. The probability distribution is generated from statistics on a set of English books..
         /// </summary>
         public static string AdvancedExplanation {
             get {
@@ -79,7 +79,7 @@ namespace ProPassGen {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This program generates passwords that are designed to be somehwat similar to English words. They are of relatively low entropy, meaning that they are not very strong and shouldn&apos;t be used in critical places. If you are unsure about whether they fit your particular use, ask a computer-savvy friend..
+        ///   Looks up a localized string similar to This program generates passwords that are designed to be somehwat similar to English words. They are of relatively low entropy, meaning that they are not very strong and shouldn&apos;t be used in critical places..
         /// </summary>
         public static string BasicExplanation {
             get {
@@ -114,6 +114,15 @@ namespace ProPassGen {
         public static string License {
             get {
                 return ResourceManager.GetString("License", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For more information about the program and to obtain the sources, visit:.
+        /// </summary>
+        public static string WebSite {
+            get {
+                return ResourceManager.GetString("WebSite", resourceCulture);
             }
         }
     }

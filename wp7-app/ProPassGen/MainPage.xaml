@@ -59,46 +59,43 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0" Margin="0,0,0,12">
-                            <TextBlock Name="Pw0TextBlock"
-                                    Style="{StaticResource PhoneTextExtraLargeStyle}" 
-                                    Text=".........."
+                            <TextBox Name="Pw0TextBlock"
+                                    IsReadOnly="True"
                                     TextAlignment="Center"
                                     FontWeight="SemiBold"
-                                    Opacity="0.6"
                                     FontFamily="Courier New"
-                                    Foreground="{StaticResource PhoneAccentBrush}"/>
+                                    Foreground="{StaticResource PhoneAccentBrush}"
+                                    Template="{StaticResource PhoneDisabledTextBoxTemplate}"
+                                    Text=".........."
+                                    Opacity="0.7"
+                                    FontSize="60" />
                         </Grid>
                         <Grid Grid.Row="1" Margin="0,0,0,12">
                             <TextBox Name="Pw1TextBlock"
                                     IsReadOnly="True"
                                     TextAlignment="Center"
-                                     FontWeight="SemiBold"
-                                     FontFamily="Courier New"
-                                     Foreground="{StaticResource PhoneAccentBrush}"
-                                     Template="{StaticResource PhoneDisabledTextBoxTemplate}"
-                                     Text=".........." FontSize="{StaticResource PhoneFontSizeExtraLarge}" />
-                            <!--<TextBlock Name="Pw1TextBlock"
-                                    Style="{StaticResource PhoneTextExtraLargeStyle}" 
+                                    FontWeight="SemiBold"
+                                    FontFamily="Courier New"
+                                    Foreground="{StaticResource PhoneAccentBrush}"
+                                    Template="{StaticResource PhoneDisabledTextBoxTemplate}"
                                     Text=".........."
+                                    FontSize="60" />
+                        </Grid>
+                        <Grid Grid.Row="2" Margin="0,0,0,30">
+                            <TextBox Name="Pw2TextBlock"
+                                    IsReadOnly="True"
                                     TextAlignment="Center"
                                     FontWeight="SemiBold"
                                     FontFamily="Courier New"
-                                    Foreground="{StaticResource PhoneAccentBrush}"/>-->
-                        </Grid>
-                        <Grid Grid.Row="2" Margin="0,0,0,30">
-                            <TextBlock Name="Pw2TextBlock"
-                                    Style="{StaticResource PhoneTextExtraLargeStyle}" 
-                                    HorizontalAlignment="Stretch"
+                                    Foreground="{StaticResource PhoneAccentBrush}"
+                                    Template="{StaticResource PhoneDisabledTextBoxTemplate}"
                                     Text=".........."
-                                    TextAlignment="Center"
-                                    FontWeight="Bold"
-                                    Opacity="0.6"
-                                    FontFamily="Courier New"
-                                    Foreground="{StaticResource PhoneAccentBrush}"/>
+                                    Opacity="0.7"
+                                    FontSize="60" />
                         </Grid>
                     </Grid>
                     <Grid Grid.Row="3" Margin="0,12,0,12">
-                        <TextBlock Text="Password entropy: 25.3 bits" TextWrapping="Wrap"/>
+                        <TextBlock Name="EntropyTxt" Text="" TextWrapping="Wrap"/>
                     </Grid>
                 </Grid>
             </controls:PivotItem>
@@ -120,8 +117,10 @@
                                     TextWrapping="Wrap" Margin="0,12,0,0" d:LayoutOverrides="Width" />
                             <TextBlock Text="{Binding Path=LocalizedResources.License, Source={StaticResource LocalizedStrings}}"
                                     TextWrapping="Wrap" Margin="0,12,0,0" d:LayoutOverrides="Width" />
-                            <HyperlinkButton Content="gpw" NavigateUri="http://www.google.com" TargetName="_blank"/>
-                            <HyperlinkButton Content="gpw" NavigateUri="http://www.google.com" TargetName="_blank"/>
+                            <TextBlock Text="{Binding Path=LocalizedResources.WebSite, Source={StaticResource LocalizedStrings}}"
+                                    TextWrapping="Wrap" Margin="0,12,0,0" d:LayoutOverrides="Width" />
+                            <HyperlinkButton HorizontalAlignment="Left" Margin="0,12,0,0" Content="ProPassGen on Github" NavigateUri="http://www.github.com/lucasmaystre/propassgen" TargetName="_blank"/>
+                            
                         </StackPanel>
                     </ScrollViewer>
                         

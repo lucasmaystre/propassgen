@@ -49,6 +49,7 @@ namespace ProPassGen
         public List<Char> symbols { get; private set; }
         public Dictionary<string, int> frequencies { get; private set; }
         public int total { get; private set; }
+        public float entropy { get; private set; }
 
         public event EventHandler ApplicationDataChanged;
 
@@ -109,6 +110,7 @@ namespace ProPassGen
             StreamResourceInfo xml = Application.GetResourceStream(
                 new Uri("/ProPassGen;component/source.xml", UriKind.Relative));
             sourceXml = XElement.Load(xml.Stream);
+            entropy = float.Parse(sourceXml.Attribute("entropy").Value);
 
             frequencies = new Dictionary<string, int>();
             symbols = new List<Char>();
