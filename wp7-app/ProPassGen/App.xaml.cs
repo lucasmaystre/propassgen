@@ -19,6 +19,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Threading;
@@ -110,7 +111,8 @@ namespace ProPassGen
             StreamResourceInfo xml = Application.GetResourceStream(
                 new Uri("/ProPassGen;component/source.xml", UriKind.Relative));
             sourceXml = XElement.Load(xml.Stream);
-            entropy = float.Parse(sourceXml.Attribute("entropy").Value);
+            entropy = float.Parse(sourceXml.Attribute("entropy").Value,
+                    CultureInfo.InvariantCulture.NumberFormat); // We use a dot as decimal separator.
 
             frequencies = new Dictionary<string, int>();
             symbols = new List<Char>();
